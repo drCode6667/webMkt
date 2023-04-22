@@ -1,0 +1,149 @@
+<div class="container-fluid" id="carsBd">
+    <div id="carouselExampleControlsNoTouching" class="carousel slide " data-bs-touch="false">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="imgs/crsl/crs1.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+  </div>
+<div class="cooontainer" text-align="center" style="padding-top:50px;">
+  <h1>Productos más buscados</h1>
+  <main role="main" ng-app="paginationApp">
+    <section class="container" ng-controller="PaginationController as vm">
+      <div class="column">
+          <!-- list of items being paginated -->
+          <div class="row">
+            <div class="col-3" ng-repeat="item in vm.items">
+              <div class="card" style="width: 18rem;" >
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.Name}} </h5>
+                  <p class="card-text">{{item.Description}} {{item.Brand}} </p>
+                  <a href="#" class="btn btn-primary">${{item.Price}} MXN</a>
+                </div>
+              </div>
+            </div>
+          </div>   
+          <!-- pagination magic -->
+          <ul ng-if="vm.pager.pages.length" class="pagination">
+            <li ng-class="{disabled:vm.pager.currentPage === 1}">
+              <a ng-click="vm.setPage(1)">Primero</a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === 1}">
+              <a ng-click="vm.setPage(vm.pager.currentPage - 1)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
+              <a ng-click="vm.setPage(page)">{{page}}</a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+              <a ng-click="vm.setPage(vm.pager.currentPage + 1)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+              <a ng-click="vm.setPage(vm.pager.totalPages)">Ultimo</a>
+            </li>
+          </ul>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="cooontainer" text-align="center" style="padding-top:50px;">
+  <h1>Promociones</h1>
+  <main role="main" ng-app="paginationApp">
+    <section class="container" ng-controller="PaginationController as vm">
+      <div class="column">
+          <!-- list of items being paginated -->
+          <div class="row">
+            <div class="col-3" ng-repeat="item in vm.items">
+              <div class="card" style="width: 18rem;" >
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.Name}} </h5>
+                  <p class="card-text">{{item.Description}} {{item.Brand}} </p>
+                  <a href="#" class="btn btn-primary">${{item.Price}} MXN</a>
+                </div>
+              </div>
+            </div>
+          </div>   
+          <!-- pagination magic -->
+          <ul ng-if="vm.pager.pages.length" class="pagination">
+            <li ng-class="{disabled:vm.pager.currentPage === 1}">
+              <a ng-click="vm.setPage(1)">Primero</a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === 1}">
+              <a ng-click="vm.setPage(vm.pager.currentPage - 1)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
+              <a ng-click="vm.setPage(page)">{{page}}</a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+              <a ng-click="vm.setPage(vm.pager.currentPage + 1)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+              <a ng-click="vm.setPage(vm.pager.totalPages)">Ultimo</a>
+            </li>
+          </ul>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="cooontainer" text-align="center" style="padding-top:50px;">
+  <h1>Servicentro</h1>
+  <main role="main" ng-app="paginationApp">
+    <section class="container" ng-controller="PaginationController as vm">
+      <div class="column">
+          <!-- list of items being paginated -->
+          <div class="row">
+            <div class="col-3" ng-repeat="item in vm.items">
+              <div class="card" style="width: 18rem;" >
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.Name}} </h5>
+                  <p class="card-text">{{item.Description}} {{item.Brand}} </p>
+                  <a href="#" class="btn btn-primary">${{item.Price}} MXN</a>
+                </div>
+              </div>
+            </div>
+          </div>   
+          <!-- pagination magic -->
+          <ul ng-if="vm.pager.pages.length" class="pagination">
+            <li ng-class="{disabled:vm.pager.currentPage === 1}">
+              <a ng-click="vm.setPage(1)">Primero</a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === 1}">
+              <a ng-click="vm.setPage(vm.pager.currentPage - 1)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
+              <a ng-click="vm.setPage(page)">{{page}}</a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+              <a ng-click="vm.setPage(vm.pager.currentPage + 1)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+              <a ng-click="vm.setPage(vm.pager.totalPages)">Ultimo</a>
+            </li>
+          </ul>
+      </div>
+    </section>
+  </main>
+</div>
