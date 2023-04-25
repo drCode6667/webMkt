@@ -1,6 +1,31 @@
 body{
     margin: 0px;
     padding:0px;
+    height: 100%;
+}
+
+h1{
+    letter-spacing: 5px;
+}
+
+#myDiv {
+    display: none;
+}
+
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#navBarWeb{
+    background:dodgerblue;
+}
+
+.nav-item a{
+    color:#FFF;
+}
+
+.nav-item a:active{
+    color:#000;
 }
 
 .carousel-item img{
@@ -11,9 +36,8 @@ body{
     --bs-gutter-x: 0em;
 }
 
-#myDiv {
-    display: none;
-    text-align: center;
+.dropdown-menu{
+    background:dodgerblue;
 }
 
 #loader {
@@ -34,4 +58,114 @@ body{
     padding: 10px;
     overflow: scroll;
     height: 150px;
+}
+
+#moreSearch h1{
+    text-align:center;
+}
+
+.sectionProductsOne{
+    margin-top: 70px;
+}
+
+.pagination{
+    margin-top: 20px;
+}
+
+.pagination li{
+    padding: 5px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+    border: 1px solid dodgerblue;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.disabled{
+    display: none;
+    
+}
+
+.promotion{
+    margin-top: 70px;
+}
+
+.colorCardPromo{
+    background-color: gainsboro;
+}
+
+.sectionPays{
+    margin-top: 70px;
+}
+
+.heightPromo{
+    height: 190px;
+    margin: 15px;
+}
+
+.heightPay{
+    height: 120px;
+    margin: 15px;
+}
+
+.bgPromo {
+    /* The image used */
+    background-image: url("../imgs/crsl/crs1.jpg");
+  
+    /* Full height */
+    height: 100%;
+    width: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+.bgPay {
+    /* The image used */
+    background-image: url("../imgs/crsl/crs1.jpg");
+  
+    /* Full height */
+    height: 100%;
+    width: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#footer{
+    padding:25px;
+}
+
+#footer h3{
+    color: #FFF;
+}
+
+#footer h4{
+    color: #FFF;
+}
+
+#footer p{
+    color: deepskyblue;
+}
+
+#footer a{
+    text-decoration: none;
 }
