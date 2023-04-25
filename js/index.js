@@ -12,48 +12,95 @@ var app = angular.module('papeApp', ['ngRoute']).factory('PaginationService', Pa
   };
 })
 
+app.filter('isArtGroup', function(){
+  return function(values, groupId) {
+    if(!groupId) {
+      // initially don't filter
+      return values;
+    }
+    // filter when we have a selected groupId
+    return values.filter(function(value){
+      return value.Brand === groupId;
+    })
+  }
+})
+
 var names =  [
   {
     "Name" : "Pluma Roja",
     "Price" : "8.00",
     "Description" : "Punto fino",
-    "Brand" : "Bic"
+    "Brand" : "Bic",
+    "Image" : "plrj.jpg"
   },
   {
     "Name" : "Pluma Azul",
     "Price" : "8.00",
     "Description" : "Punto fino",
-    "Brand" : "Bic"
+    "Brand" : "Bic",
+    "Image" : "plbl.jpg"
   },
   {
     "Name" : "Pluma Negra",
     "Price" : "8.00",
     "Description" : "Punto fino",
-    "Brand" : "Bic"
+    "Brand" : "Bic",
+    "Image" : "plng.jpg"
   },
   {
     "Name" : "Lapiz",
     "Price" : "8.00",
     "Description" : "Punto fino",
-    "Brand" : "Bic"
+    "Brand" : "Dixon",
+    "Image" : "plrj.jpg"
   },
   {
     "Name" : "Color Rojo",
     "Price" : "8.00",
     "Description" : "Punto fino",
-    "Brand" : "Bic"
+    "Brand" : "Dixon",
+    "Image" : "plbl.jpg"
   },
   {
     "Name" : "Resistols",
     "Price" : "8.00",
     "Description" : "Punto fino",
-    "Brand" : "Bic"
+    "Brand" : "Dixon",
+    "Image" : "plng.jpg"
   },
   {
     "Name" : "Tijeras",
     "Price" : "8.00",
     "Description" : "Punto fino",
-    "Brand" : "Bic"
+    "Brand" : "Shelly",
+    "Image" : "plrj.jpg"
+  }
+];
+
+var promotionsItems = [
+  {
+    "Id" : "1",
+    "Url" : "plng.jpg",
+    "DateOn" : "Punto fino",
+    "DateOff" : "01/01/2023",
+  },
+  {
+    "Id" : "2",
+    "Url" : "plng.jpg",
+    "DateOn" : "Punto fino",
+    "DateOff" : "01/01/2023",
+  },
+  {
+    "Id" : "3",
+    "Url" : "plng.jpg",
+    "DateOn" : "Punto fino",
+    "DateOff" : "01/01/2023",
+  },
+  {
+    "Id" : "4",
+    "Url" : "plng.jpg",
+    "DateOn" : "Punto fino",
+    "DateOff" : "01/01/2023",
   }
 ];
 
@@ -84,7 +131,22 @@ app.config(function($routeProvider) {
 
 app.controller('PaginationController', PaginationController);
 
-function PaginationController(PaginationService) {
+
+function PaginationController(PaginationService, $scope) {
+
+  $scope.muestra = false;
+  $scope.selectedGroup = '';
+  $scope.setGroup = function(group) {
+  $scope.muestra = true;
+  $scope.selectedGroup = group;
+  }
+
+  $scope.cleanFilter = function (){
+    $scope.selectedGroup = '';
+    $scope.muestra = false;
+
+  }
+
   var vm = this;
 
   var records = names;
@@ -128,13 +190,13 @@ function PaginationService() {
     currentPage = currentPage || 1;
 
     // default page size will be 10
-    pageSize = pageSize || 4;
+    pageSize = pageSize || 6;
 
     // calc total pages 
     var totalPages = Math.ceil(totalItems / pageSize);
 
     var startPage, endPage;
-    if (totalPages <= 4) {
+    if (totalPages <= 10) {
       // less than 10 total pages so show all
       startPage = 1;
       endPage = totalPages;
@@ -206,5 +268,15 @@ app.controller('pageLoadAppCtrl', ["$scope", function($scope) {
   }
 
 }]);
+
+app.controller('loadPromotions', ["$scope", function($scope) {
+  $scope.itemsPromo = promotionsItems;
+  console.log($scope.itemsPromo);
+
+  $scope.CurrentDate = new Date();
+  console.log($scope.CurrentDate.getMonth());
+
+}]);
+
 
 

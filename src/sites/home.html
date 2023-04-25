@@ -15,135 +15,177 @@
         </button>
     </div>
   </div>
-<div class="cooontainer" text-align="center" style="padding-top:50px;">
+<div id="moreSearch" class="container"  style="margin-top:70px;">
   <h1>Productos más buscados</h1>
-  <main role="main" ng-app="paginationApp">
+  <main class="sectionProductsOne" role="main">
     <section class="container" ng-controller="PaginationController as vm">
       <div class="column">
           <!-- list of items being paginated -->
           <div class="row">
-            <div class="col-3" ng-repeat="item in vm.items">
-              <div class="card" style="width: 18rem;" >
-                <img src="..." class="card-img-top" alt="...">
+            <div class="col-2" ng-repeat="item in vm.items | isArtGroup: selectedGroup">
+              <div class="card" >
+                <img src="imgs/products/{{item.Image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{item.Name}} </h5>
-                  <p class="card-text">{{item.Description}} {{item.Brand}} </p>
-                  <a href="#" class="btn btn-primary">${{item.Price}} MXN</a>
+                  <p class="card-text">{{item.Description}}</p>
+                  <footer class="blockquote-footer">Marca <cite title="Source Title" ng-click="setGroup(item.Brand)"> {{item.Brand}}</cite></footer>
+                  <a class="btn btn-primary">${{item.Price}} MXN</a>
                 </div>
               </div>
             </div>
+            <span ng-show="muestra" ng-click="cleanFilter()">Restablecer Filtro</span>
           </div>   
           <!-- pagination magic -->
           <ul ng-if="vm.pager.pages.length" class="pagination">
-            <li ng-class="{disabled:vm.pager.currentPage === 1}">
+            <!-- <li  ng-class="{disabled:vm.pager.currentPage === 1}">
               <a ng-click="vm.setPage(1)">Primero</a>
-            </li>
-            <li ng-class="{disabled:vm.pager.currentPage === 1}">
-              <a ng-click="vm.setPage(vm.pager.currentPage - 1)" aria-label="Previous">
+            </li> -->
+            <li >
+              <a ng-class="{disabled:vm.pager.currentPage === 1}" ng-click="vm.setPage(vm.pager.currentPage - 1)" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
-              <a ng-click="vm.setPage(page)">{{page}}</a>
+            <li ng-repeat="page in vm.pager.pages" >
+              <a class="dot" ng-click="vm.setPage(page)" ng-class="{active:vm.pager.currentPage === page}">{{page}}</a>
             </li>
-            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-              <a ng-click="vm.setPage(vm.pager.currentPage + 1)" aria-label="Next">
+            <li >
+              <a ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}" ng-click="vm.setPage(vm.pager.currentPage + 1)" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
-            </li>
-            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-              <a ng-click="vm.setPage(vm.pager.totalPages)">Ultimo</a>
             </li>
           </ul>
       </div>
     </section>
   </main>
 </div>
-<div class="cooontainer" text-align="center" style="padding-top:50px;">
+<div id="promotionsSec" class="container" text-align="center" style="margin-top:70px;">
   <h1>Promociones</h1>
-  <main role="main" ng-app="paginationApp">
-    <section class="container" ng-controller="PaginationController as vm">
+  <main class="promotion" role="main">
+    <section class="container" ng-controller="loadPromotions">
       <div class="column">
           <!-- list of items being paginated -->
           <div class="row">
-            <div class="col-3" ng-repeat="item in vm.items">
-              <div class="card" style="width: 18rem;" >
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{item.Name}} </h5>
-                  <p class="card-text">{{item.Description}} {{item.Brand}} </p>
-                  <a href="#" class="btn btn-primary">${{item.Price}} MXN</a>
+            <div class="col-6" ng-repeat="item in itemsPromo"  style="padding:10px;">
+              <div class="card"  ng-show="item.DateOff ">
+                <img  src="imgs/products/{{item.Url}}" data-bs-toggle="modal" data-bs-target="#{{item.Id}}" class="card-img-top" alt="imagen promocional...">
+                <div class="colorCardPromo  card-body">
+                  <cite title="Source Title" ng-click="setGroup(item.Brand)">
+                    Promoción valid hasta {{item.DateOff}} 
+                  </cite>
                 </div>
               </div>
+              <div class="modal fade" id="{{item.Id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Promociones</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <img  src="imgs/products/{{item.Url}}" alt="imagen promocional...">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
             </div>
           </div>   
-          <!-- pagination magic -->
-          <ul ng-if="vm.pager.pages.length" class="pagination">
-            <li ng-class="{disabled:vm.pager.currentPage === 1}">
-              <a ng-click="vm.setPage(1)">Primero</a>
-            </li>
-            <li ng-class="{disabled:vm.pager.currentPage === 1}">
-              <a ng-click="vm.setPage(vm.pager.currentPage - 1)" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
-              <a ng-click="vm.setPage(page)">{{page}}</a>
-            </li>
-            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-              <a ng-click="vm.setPage(vm.pager.currentPage + 1)" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-              <a ng-click="vm.setPage(vm.pager.totalPages)">Ultimo</a>
-            </li>
-          </ul>
       </div>
+
+      
     </section>
   </main>
 </div>
-<div class="cooontainer" text-align="center" style="padding-top:50px;">
+<div  id="promotionsPay" class="container" text-align="center" style="margin-top:50px;">
   <h1>Servicentro</h1>
-  <main role="main" ng-app="paginationApp">
-    <section class="container" ng-controller="PaginationController as vm">
-      <div class="column">
-          <!-- list of items being paginated -->
-          <div class="row">
-            <div class="col-3" ng-repeat="item in vm.items">
-              <div class="card" style="width: 18rem;" >
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{item.Name}} </h5>
-                  <p class="card-text">{{item.Description}} {{item.Brand}} </p>
-                  <a href="#" class="btn btn-primary">${{item.Price}} MXN</a>
-                </div>
-              </div>
-            </div>
-          </div>   
-          <!-- pagination magic -->
-          <ul ng-if="vm.pager.pages.length" class="pagination">
-            <li ng-class="{disabled:vm.pager.currentPage === 1}">
-              <a ng-click="vm.setPage(1)">Primero</a>
-            </li>
-            <li ng-class="{disabled:vm.pager.currentPage === 1}">
-              <a ng-click="vm.setPage(vm.pager.currentPage - 1)" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
-              <a ng-click="vm.setPage(page)">{{page}}</a>
-            </li>
-            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-              <a ng-click="vm.setPage(vm.pager.currentPage + 1)" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-            <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-              <a ng-click="vm.setPage(vm.pager.totalPages)">Ultimo</a>
-            </li>
-          </ul>
+  <main class="sectionPays" role="main" >
+    <section class="container" >
+      <div class=" column heightPromo" >
+        <div class="bgPromo  " >
+        </div>
+      </div>
+      <div class="column heightPay">
+        <div class="bgPay " >
+        </div>
       </div>
     </section>
   </main>
 </div>
+<!-- SECTION FOR FOOTER -->
+<div class="container-fluid bg-dark scroll-content ">
+  <div  >
+    <div class="container">
+      <div class="row">
+        <div id="footer" class="col-4">
+          <h3>Suscribete</h3>
+          <p>Recibe nuestras ofertas en tu correo. </p>
+          <div class="column columnContact" ng-controller="mailCtrl">
+            <form id="formContact" name="myForm" class="form-floating" novalidate>
+                <div class="form-floating mb-3">
+                    <input name="mailUserContact" ng-model="user.mailUserContact" type="email" class="form-control" id="formGroupExampleInput3" placeholder="uncorreo@host.com" required>
+                    <label for="formGroupExampleInput2">Correo Electrónico</label>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-5 ">
+                            <button style="width:100%;" id="go" ng-disabled="myForm.$invalid" type="submit" ng-click="sendMail(user)" class="btn btn-primary">Enviar</button>
+                        </div>
+                        <div class="col-7">
+                            <a  href="http://www.inacom.com.mx/aviso-de-privacidad/" target="_blank">Aviso de Privacidad</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top:20px;">
+                    <div class="row">
+                        <div class="col-12">
+                        <div class="alert alert-danger" role="alert" ng-show="myForm.mailUserContact.$dirty && myForm.mailUserContact.$invalid">
+                            <span ng-show="myForm.mailUserContact.$error.required">Ingrese una dirección de correo.</span>
+                            <span ng-show="myForm.mailUserContact.$error.email">Ingrese una dirección de correo valida.</span>
+                        </div>
+                        <div id="showMsg" class="alert alert-success" role="success" ng-show="myForm.$submitted" >
+                            <span >Gracias su mensaje se envio exitosamente</span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+        <div  id="footer" class="col-8">
+          <div class="row">
+            <div class="col-6">
+              <h3>Contactanos</h3>
+              <a href="">
+                Heroes Chalco III, Edo. de Mex. 
+              </a><br>
+              <a href="">papeleria@gmail.com</a><br>
+              <a href="">55 16 87 96 18</a><br>
+
+            </div>
+            <div class="col-6">
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div  id="Contact" class="container" text-align="center" style="margin-top:50px;">
+  <h1>Contactanos</h1>
+  <main class="sectionPays" role="main" >
+    <section class="container" >
+      <div class=" column heightPromo" >
+        <div class="bgPromo  " >
+        </div>
+      </div>
+      <div class="column heightPay">
+        <div class="bgPay " >
+        </div>
+      </div>
+    </section>
+  </main>
+</div> -->
