@@ -14,8 +14,8 @@
 <body ng-controller="pageLoadAppCtrl" data-ng-init="myFunction()" >
     <div id="loader" >
         <div class="d-flex align-items-center">
-            <strong>Cargando...</strong>
-            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            <strong>Cargando...  </strong>
+            <!-- <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div> -->
           </div>
     </div>
     <div style="display:none;" id="myDiv" >
@@ -32,17 +32,19 @@
                   <a class="nav-link" aria-current="page" href="#">Inicio</a>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link" href="#">Promociones</a>
+                    <a class="nav-link" ng-click="scrollTo('promoDiv')">Promociones</a>
                   </li>
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Categorias
                   </a>
                   <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li><a class="dropdown-item" href="#">Escolar</a></li>
+                      <li><a class="dropdown-item" href="#">Oficina</a></li>
+                      <li><a class="dropdown-item" ng-click="scrollTo('serviCenterDiv')">Papel</a></li>
+                      <li><a class="dropdown-item" ng-click="scrollTo('serviCenterDiv')">Computo e Impresión</a></li>
+                      <li><a class="dropdown-item" href="#">Arte y Manualidades</a></li>
+                      <li><a class="dropdown-item" ng-click="scrollTo('serviCenterDiv')">Regalos y Fiestas</a></li>
                   </ul>
                   </li>
                   <li class="nav-item">
@@ -54,16 +56,16 @@
                   <form class="d-flex .d-none .d-xxl-block" role="search">
                     <div>
                         <div class="input-group">
-                            <input  auto-complete ui-items="names" ng-model="selected" type="text" class="form-control" placeholder="Ejemplo: Pluma punto fino" aria-label="Username" aria-describedby="basic-addon1">
+                            <input  style="background:#fbfbfb;"auto-complete ui-items="names" ng-model="selected" type="text" class="form-control" placeholder="Ejemplo: Pluma punto fino" aria-label="Username" aria-describedby="basic-addon1">
                             <!-- <span class="input-group-text" id="basic-addon1" ng-click="clearList()">x</span> -->
-                            <span class="input-group-text">Buscar</span>
+                            <span class="input-group-text btn btn-success">Buscar</span>
                         </div>                          
-                        <div id="divShow" class="stylesInputSelect" ng-show="showlist">
+                        <div id="divShow" class="stylesInputSelect " ng-show="showlist">
                             <p ng-repeat="name in names" ng-show="([name.Name] | filter:selected).length" ng-click="selectedItem($event, name)">
-                                <span >{{name.Name}} </span>
-                                <p ng-show="(names | filter: selected).length == 0">not found</p>
+                                <span >{{name.Name}} {{ (names | filter: selected).length }} </span>
                             </p>
-                            
+                            <p ng-show="(names | filter: selected).length == 0 || (names | filter: selected).length == null">not found</p>
+
 
                         </div>
                     </div>
@@ -76,12 +78,23 @@
       <ng-view ng-click="clearList()"></ng-view>
 
     </div>
+
+    <a onclick="topFunction()" class="button" id="topBtn" title="Regresar a arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+        </svg>
+    </a>
     
 
     <script src="js/index.js"></script>
     <script src="js/controllers/mailCtrl.js"></script>
     <script src="js/services/mailService.js"></script>
-
+    <script>
+        $('#go').click(function(){
+            $('#showMsg').fadeIn().delay(3000).fadeOut();
+            });
+  
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </body>

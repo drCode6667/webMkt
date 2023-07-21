@@ -15,7 +15,7 @@
         </button>
     </div>
   </div>
-<div id="moreSearch" class="container"  style="margin-top:70px;">
+<div id="moreSearch" class="container"  style="margin-top:100px;">
   <h1>Productos más buscados</h1>
   <main class="sectionProductsOne" role="main">
     <section class="container" ng-controller="PaginationController as vm">
@@ -58,7 +58,8 @@
     </section>
   </main>
 </div>
-<div id="promotionsSec" class="container" text-align="center" style="margin-top:70px;">
+<div id="promoDiv"></div>
+<div id="promotionsSec" class="container" text-align="center" style="margin-top:100px;">
   <h1>Promociones</h1>
   <main class="promotion" role="main">
     <section class="container" ng-controller="loadPromotions">
@@ -78,11 +79,11 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Promociones</h1>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Promoción #{{item.Id}}</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <img  src="imgs/products/{{item.Url}}" alt="imagen promocional...">
+                      <img  style="width:100%;" src="imgs/products/{{item.Url}}" alt="imagen promocional...">
                     </div>
                   </div>
                 </div>
@@ -96,7 +97,8 @@
     </section>
   </main>
 </div>
-<div  id="promotionsPay" class="container" text-align="center" style="margin-top:50px;">
+<div id="serviCenterDiv"></div>
+<div  id="promotionsPay" class="container" text-align="center" style="margin-top:100px;">
   <h1>Servicentro</h1>
   <main class="sectionPays" role="main" >
     <section class="container" >

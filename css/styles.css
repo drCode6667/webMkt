@@ -2,6 +2,8 @@ body{
     margin: 0px;
     padding:0px;
     height: 100%;
+    background-color: #fbfbfb;
+
 }
 
 h1{
@@ -10,6 +12,17 @@ h1{
 
 #myDiv {
     display: none;
+}
+
+
+
+#divShow p{
+    padding: 5px;
+    cursor: pointer;
+}
+
+#divShow p:hover{
+    background-color: #b4b0b0;
 }
 
 .card{
@@ -53,11 +66,15 @@ h1{
     background: white;
     color: black;
     text-align: initial;
-    cursor: pointer;
     width: 238px;
     padding: 10px;
     overflow: scroll;
     height: 150px;
+}
+
+#divShow{
+    background-color: #fbfbfb;
+    border: 1px solid rgb(179, 179, 179);
 }
 
 #moreSearch h1{
@@ -65,7 +82,7 @@ h1{
 }
 
 .sectionProductsOne{
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 .pagination{
@@ -103,15 +120,15 @@ h1{
 }
 
 .promotion{
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 .colorCardPromo{
-    background-color: gainsboro;
+    background-color: azure;
 }
 
 .sectionPays{
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 .heightPromo{
@@ -168,4 +185,29 @@ h1{
 
 #footer a{
     text-decoration: none;
+}
+
+#topBtn {
+    width: 62px;
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 11px;
+    z-index: 99;
+    background-color: dodgerblue;
+    color: #fff;
+    border-radius: 8px;
+    border: solid 1px dodgerblue;
+}
+
+#topBtn svg {
+    width: 40px;
+    height: auto;
+}
+
+#topBtn:hover {
+    background-color: #fff;
+    color: dodgerblue;
+    cursor: pointer;
 }
